@@ -36,21 +36,26 @@ function getDayOfTheWeek(date) {
 
 
 
-
-
-"1/13/20 - 11:13am"
 /**
  * getFormattedDate
  * @param {Date} date - a Date object
  * 
  * This should return a formatted string representing the given date.
  * It should follow the format
- * M/D/YY - hh:mmaa
+ * M/D/YY - H:mmaa
  * 
- * This is using the standard way to represent a Date Format.  
+ * This is using the standard way to represent a Date Format.
  * The letters represent a part of the date.
  * 
- * Month/day/year - hours:minutes am or pm
+ * M - month
+ * D - day
+ * YY - Two digit year
+ * H - hour
+ * mm - two digit minute
+ * aa - am or pm
+ * 
+ * You will see date formats like this all over different programming languages.
+ * You don't need to memorize these or anything, just now that this is a concept...
  * 
  * For example this format should look like:
  * "1/13/20 - 11:13am"
@@ -58,7 +63,7 @@ function getDayOfTheWeek(date) {
  * etc..
  * 
  * Create variables for each part of the date, and then put them together in a string using
- * a string template.
+ * a string template.  
  * 
  * Hint: getting am or pm is kind of strange!  There is no function to just get that.
  * But, when you do getHours(), this returns 0-23. 24-hour time.
@@ -71,20 +76,13 @@ function getDayOfTheWeek(date) {
  * 
  */
 function getFormattedDate(date) {
+    let month = date.getMonth();
+    // etc...
     // Your Code Here!
-    return "";
+    return `${month}/ etc...`;
 }
 
 
-
-
-
-
-
-
-"Today"
-"Yesterday"
-"15 days ago"
 
 /**
  * getDaysAgoString
