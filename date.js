@@ -30,8 +30,18 @@
  * If you are stumped, google it! This is a problem that has been solved many times over.
  */
 function getDayOfTheWeek(date) {
-  // Your Code Here!
-  return "";
+  const week = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  var index = date.getDay();
+  var day = week[index];
+  return day;
 }
 
 /**
@@ -75,9 +85,28 @@ function getDayOfTheWeek(date) {
  */
 function getFormattedDate(date) {
   let month = date.getMonth();
-  // etc...
-  // Your Code Here!
-  return `${month}/ etc...`;
+  month = month + 1;
+  let day = date.getDate();
+  let year = date.getFullYear();
+  let abbYear = year.toString().substr(-2);
+  let hour = date.getHours();
+  let hourNew = 0;
+  let aa = "";
+  let minute = date.getMinutes();
+
+  if (hour > 11) {
+    hourNew = hour % 12;
+    aa = "pm";
+  } else {
+    hourNew = hour;
+    aa = "am";
+  }
+  if (hourNew === 0) {
+    hourNew = 12;
+  }
+  return (
+    month + "/" + day + "/" + abbYear + " - " + hourNew + ":" + minute + aa
+  );
 }
 
 /**
@@ -87,31 +116,51 @@ function getFormattedDate(date) {
  * This should return a string representing how many days ago the given date was.
  *
  * If the date is today, return "Today"
+ //if date = today, return today
  * if the date was yesterday, return "Yesterday"
+ //if date = yesterday, return yesterday
  * Otherwise return "x days ago"
+ //else return "x days ago"
  *
  * Hint: The real challenge here is computing the number of days between a date and now.
  * So how do you do that?
  * The easiest way is to first find the difference between the two timestamps.
  * So get the timestamp for now and subtract the timestamp for the given date.
+ //(timestamp.now - timestamp.then)
+
  * Now you have the milliseconds between now and then.
+
  * Then you can divide the milliseconds by the number of milliseconds in a day to get
  * the number of days.
+ * 
  * How many milliseconds are in a day? (Hint: milli means 1000, so 1000 in a second,
  * 60 seconds in a minute, 60 minutes in an hour, 24 hours in a day.)
  * Multiply all those together and you get the number of milliseconds in a day.
+ //86,400,000
  *
  * Remember that dividing two numbers can give you a decimal point answer.
  * You should use Math.floor() to get rid of the decimal point.
  * If you haven't used Math.floor() before, look it up!
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor
- *
+ //let newTotal = Math.floor(total);
+  return newTotal;
  */
 function getDaysAgoString(date) {
-  // Your Code Here!
-  return "";
+  let today = new Date();
+  let diff = today.getTime() - date.getTime();
+  let dayTime = 1000 * 60 * 60 * 24;
+  let dayDiff = Math.floor(diff / dayTime);
+  let timeAgo = `${dayDiff} days ago`;
+  if (dayDiff === 0) {
+    timeAgo = "Today";
+  }
+  if (dayDiff === 1) {
+    timeAgo = "Yesterday";
+  }
+  return timeAgo;
 }
-
+// let newTotal = Math.floor(total);
+// return newTotal;
 /* 
    -------TESTS---------------------------------------------------------------
    Run these commands to make sure you did it right. They should all be true.
@@ -121,9 +170,7 @@ function getDaysAgoString(date) {
   console.log("-----Tests for getDayOfTheWeek-----");
 
   {
-    let date = new Date(
-      "Sun Apr 05 2020 13:40:31 GMT-0700 (Pacific Daylight Time)"
-    );
+    let date = new Date("Sun Apr 05 2020 13:40:31");
     console.log("* Can get Sunday");
     console.log(getDayOfTheWeek(date) === "Sunday");
     console.log("* Can get Monday");
